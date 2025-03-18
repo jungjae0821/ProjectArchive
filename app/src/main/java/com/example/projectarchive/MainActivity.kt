@@ -43,8 +43,10 @@ fun MainMenuScreen() {
 
         Spacer(modifier = Modifier.height(24.dp))
 
-        // 각 메뉴 항목 생성
+        // ✅ 학생 명부로 이동 버튼 추가 ✅
         MenuCard("학생 명부") { context.startActivity(Intent(context, StudentListActivity::class.java)) }
+
+        // 기존 버튼들 유지
         MenuCard("계산기") { context.startActivity(Intent(context, CalculatorActivity::class.java)) }
         MenuCard("테이블") { context.startActivity(Intent(context, TableActivity::class.java)) }
     }
