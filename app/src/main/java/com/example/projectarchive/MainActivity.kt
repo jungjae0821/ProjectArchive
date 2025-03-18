@@ -8,10 +8,11 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.*
-import androidx.compose.runtime.Composable
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -27,6 +28,8 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun MainMenuScreen() {
+    val context = LocalContext.current // 화면 전환을 위한 Context
+
     Column(
         modifier = Modifier.fillMaxSize().padding(16.dp),
         horizontalAlignment = Alignment.CenterHorizontally
@@ -40,30 +43,26 @@ fun MainMenuScreen() {
 
         Spacer(modifier = Modifier.height(24.dp))
 
-        MenuCard("학생 명부", StudentListActivity::class.java)
-        MenuCard("계산기", CalculatorActivity::class.java)
-        MenuCard("테이블", TableActivity::class.java)
+        // 각 메뉴 항목 생성
+        MenuCard("학생 명부") { context.startActivity(Intent(context, StudentListActivity::class.java)) }
+        MenuCard("계산기") { context.startActivity(Intent(context, CalculatorActivity::class.java)) }
+        MenuCard("테이블") { context.startActivity(Intent(context, TableActivity::class.java)) }
     }
 }
 
 @Composable
-fun MenuCard(title: String, targetActivity: Class<*>) {
+fun MenuCard(title: String, onClick: () -> Unit) {
     Card(
         modifier = Modifier
             .fillMaxWidth()
             .padding(8.dp)
-            .clickable {
-                // 화면 이동
-                val context = androidx.compose.ui.platform.LocalContext.current
-                val intent = Intent(context, targetActivity)
-                context.startActivity(intent)
-            },
+            .clickable { onClick() },
         shape = RoundedCornerShape(12.dp),
         colors = CardDefaults.cardColors(containerColor = Color(0xFFE3F2FD)) // 연한 파란색
     ) {
-        Box(
+        Column(
             modifier = Modifier.padding(20.dp),
-            contentAlignment = Alignment.Center
+            horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Text(text = title, fontSize = 20.sp, fontWeight = FontWeight.Medium)
         }
