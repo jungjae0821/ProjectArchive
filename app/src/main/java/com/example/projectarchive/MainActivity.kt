@@ -30,26 +30,29 @@ class MainActivity : ComponentActivity() {
 fun MainMenuScreen() {
     val context = LocalContext.current // 화면 전환을 위한 Context
 
-    Column(
-        modifier = Modifier.fillMaxSize().padding(16.dp),
-        horizontalAlignment = Alignment.CenterHorizontally
+    Box( // ✅ 화면 전체를 감싸서 중앙 정렬 적용
+        modifier = Modifier.fillMaxSize(),
+        contentAlignment = Alignment.Center // ✅ 중앙 정렬
     ) {
-        Text(
-            text = "Project Archive",
-            fontSize = 28.sp,
-            fontWeight = FontWeight.Bold,
-            color = Color(0xFF1565C0)
-        )
+        Column(
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+            Text(
+                text = "Project Archive",
+                fontSize = 28.sp,
+                fontWeight = FontWeight.Bold,
+                color = Color(0xFF1565C0), // 파란색 계열
+                modifier = Modifier.padding(bottom = 24.dp)
+            )
 
-        Spacer(modifier = Modifier.height(24.dp))
-
-        // 클릭하면 학생 명부로 이동
-        MenuCard("학생 명부") { context.startActivity(Intent(context, StudentListActivity::class.java)) }
-
-        MenuCard("청휘석 계산기") { context.startActivity(Intent(context, CalculatorActivity::class.java)) }
-        MenuCard("테이블") { context.startActivity(Intent(context, TableActivity::class.java)) }
+            // 버튼 중앙에 배치
+            MenuCard("학생 명부") { context.startActivity(Intent(context, StudentListActivity::class.java)) }
+            MenuCard("계산기") { context.startActivity(Intent(context, CalculatorActivity::class.java)) }
+            MenuCard("테이블") { context.startActivity(Intent(context, TableActivity::class.java)) }
+        }
     }
 }
+
 
 @Composable
 fun MenuCard(title: String, onClick: () -> Unit) {
