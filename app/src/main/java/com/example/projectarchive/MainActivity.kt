@@ -47,7 +47,7 @@ fun MainMenuScreen() {
         MenuCard("학생 명부") { context.startActivity(Intent(context, StudentListActivity::class.java)) }
 
         // 기존 버튼들 유지
-        MenuCard("계산기") { context.startActivity(Intent(context, CalculatorActivity::class.java)) }
+        MenuCard("청휘석 계산기") { context.startActivity(Intent(context, CalculatorActivity::class.java)) }
         MenuCard("테이블") { context.startActivity(Intent(context, TableActivity::class.java)) }
     }
 }
