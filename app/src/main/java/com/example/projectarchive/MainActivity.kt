@@ -38,15 +38,14 @@ fun MainMenuScreen() {
             text = "Project Archive",
             fontSize = 28.sp,
             fontWeight = FontWeight.Bold,
-            color = Color(0xFF1565C0) // 파란색 계열
+            color = Color(0xFF1565C0)
         )
 
         Spacer(modifier = Modifier.height(24.dp))
 
-        // ✅ 학생 명부로 이동 버튼 추가 ✅
+        // 클릭하면 학생 명부로 이동
         MenuCard("학생 명부") { context.startActivity(Intent(context, StudentListActivity::class.java)) }
 
-        // 기존 버튼들 유지
         MenuCard("청휘석 계산기") { context.startActivity(Intent(context, CalculatorActivity::class.java)) }
         MenuCard("테이블") { context.startActivity(Intent(context, TableActivity::class.java)) }
     }
@@ -60,11 +59,13 @@ fun MenuCard(title: String, onClick: () -> Unit) {
             .padding(8.dp)
             .clickable { onClick() },
         shape = RoundedCornerShape(12.dp),
-        colors = CardDefaults.cardColors(containerColor = Color(0xFFE3F2FD)) // 연한 파란색
+        colors = CardDefaults.cardColors(containerColor = Color(0xFFE3F2FD))
     ) {
-        Column(
-            modifier = Modifier.padding(20.dp),
-            horizontalAlignment = Alignment.CenterHorizontally
+        Box(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(20.dp),
+            contentAlignment = Alignment.Center
         ) {
             Text(text = title, fontSize = 20.sp, fontWeight = FontWeight.Medium)
         }

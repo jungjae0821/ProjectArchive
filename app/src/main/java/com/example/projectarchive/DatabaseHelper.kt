@@ -18,7 +18,7 @@ class DatabaseHelper(context: Context) :
         """.trimIndent()
         db.execSQL(createStudentTable)
 
-        // 샘플 데이터 추가
+        // 데이터 추가
         db.execSQL("INSERT INTO $TABLE_STUDENTS (name, type) VALUES ('김철수', '폭발/경장갑')")
         db.execSQL("INSERT INTO $TABLE_STUDENTS (name, type) VALUES ('이영희', '관통/특수장갑')")
         db.execSQL("INSERT INTO $TABLE_STUDENTS (name, type) VALUES ('박민수', '신비/중장갑')")

@@ -39,7 +39,7 @@ fun StudentListScreen() {
     Column(modifier = Modifier.fillMaxSize().padding(16.dp)) {
         Text(text = "학생 명부", fontSize = 24.sp, modifier = Modifier.padding(bottom = 16.dp))
 
-        // ✅ 검색창 추가 ✅
+        // 검색창 추가
         OutlinedTextField(
             value = searchQuery,
             onValueChange = { searchQuery = it },
@@ -47,7 +47,7 @@ fun StudentListScreen() {
             modifier = Modifier.fillMaxWidth().padding(bottom = 16.dp)
         )
 
-        // ✅ 검색 결과를 리스트로 표시 ✅
+        // 검색 결과를 리스트로 표시
         LazyColumn {
             items(filteredStudents) { student ->
                 StudentItem(student.first, student.second)
