@@ -13,15 +13,15 @@ class DatabaseHelper(context: Context) :
             CREATE TABLE $TABLE_STUDENTS (
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
                 name TEXT NOT NULL,
-                birthday TEXT NOT NULL
+                type TEXT NOT NULL
             );
         """.trimIndent()
         db.execSQL(createStudentTable)
 
         // 샘플 데이터 추가
-        db.execSQL("INSERT INTO $TABLE_STUDENTS (name, birthday) VALUES ('김철수', '2003-04-12')")
-        db.execSQL("INSERT INTO $TABLE_STUDENTS (name, birthday) VALUES ('이영희', '2004-07-25')")
-        db.execSQL("INSERT INTO $TABLE_STUDENTS (name, birthday) VALUES ('박민수', '2005-02-10')")
+        db.execSQL("INSERT INTO $TABLE_STUDENTS (name, type) VALUES ('김철수', '폭발/경장갑')")
+        db.execSQL("INSERT INTO $TABLE_STUDENTS (name, type) VALUES ('이영희', '관통/특수장갑')")
+        db.execSQL("INSERT INTO $TABLE_STUDENTS (name, type) VALUES ('박민수', '신비/중장갑')")
     }
 
     override fun onUpgrade(db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
@@ -33,12 +33,12 @@ class DatabaseHelper(context: Context) :
     fun getAllStudents(): List<Pair<String, String>> {
         val studentList = mutableListOf<Pair<String, String>>()
         val db = readableDatabase
-        val cursor: Cursor = db.rawQuery("SELECT name, birthday FROM $TABLE_STUDENTS", null)
+        val cursor: Cursor = db.rawQuery("SELECT name, type FROM $TABLE_STUDENTS", null)
 
         while (cursor.moveToNext()) {
             val name = cursor.getString(0)
-            val birthday = cursor.getString(1)
-            studentList.add(Pair(name, birthday))
+            val type = cursor.getString(1)
+            studentList.add(Pair(name, type))
         }
         cursor.close()
         db.close()
