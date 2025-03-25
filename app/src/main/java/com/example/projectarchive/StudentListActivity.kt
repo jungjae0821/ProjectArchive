@@ -76,15 +76,17 @@ fun StudentItem(student: Triple<String, String, String>, onClick: () -> Unit) {
         colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surfaceVariant)
     ) {
         Column(modifier = Modifier.padding(16.dp)) {
-            Text(text = "이름: ${student.first}", fontSize = 18.sp)
-            Text(text = "타입: ${student.second}", fontSize = 16.sp)
-
             // 이미지 표시
             Image(
                 painter = rememberImagePainter(student.third), // Coil로 이미지 로드
                 contentDescription = "학생 사진",
-                modifier = Modifier.size(100.dp) // 이미지 크기 설정
+                modifier = Modifier
+                    .size(100.dp) // 이미지 크기 설정
+                    .padding(bottom = 8.dp) // 이미지와 텍스트 사이에 여백 추가
             )
+            // 학생 정보
+            Text(text = "이름: ${student.first}", fontSize = 18.sp)
+            Text(text = "타입: ${student.second}", fontSize = 16.sp)
         }
     }
 }
@@ -96,15 +98,17 @@ fun StudentDetailDialog(student: Triple<String, String, String>, onDismiss: () -
         title = { Text("학생 정보") },
         text = {
             Column {
-                Text("이름: ${student.first}", fontSize = 18.sp)
-                Text("타입: ${student.second}", fontSize = 18.sp)
-
                 // 이미지 표시
                 Image(
                     painter = rememberImagePainter(student.third), // Coil로 이미지 로드
                     contentDescription = "학생 사진",
-                    modifier = Modifier.size(150.dp) // 이미지 크기 설정
+                    modifier = Modifier
+                        .size(150.dp) // 이미지 크기 설정
+                        .padding(bottom = 16.dp) // 이미지와 텍스트 사이에 여백 추가
                 )
+                // 학생 정보
+                Text("이름: ${student.first}", fontSize = 18.sp)
+                Text("타입: ${student.second}", fontSize = 18.sp)
             }
         },
         confirmButton = {
