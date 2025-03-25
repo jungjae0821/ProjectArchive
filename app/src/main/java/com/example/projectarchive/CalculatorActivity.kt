@@ -28,49 +28,46 @@ fun CalculatorScreen() {
     val context = LocalContext.current
     val dbHelper = remember { CurrencyDatabaseHelper(context) }
 
-    var currencyInput by remember { mutableStateOf("") } // 사용자가 입력한 재화 값
-    var todayCurrency by remember { mutableStateOf(dbHelper.getTodayCurrency()) } // 오늘 획득한 재화
-    var weeklyTotal by remember { mutableStateOf(dbHelper.getTotalCurrency(7)) } // 최근 7일 총합
-    var monthlyTotal by remember { mutableStateOf(dbHelper.getTotalCurrency(30)) } // 최근 30일 총합
+    val dailyCurrency = dbHelper.getDailyCurrency() // ✅ 하루 획득 가능 재화 가져오기
+    var daysInput by remember { mutableStateOf("") } // 사용자가 입력한 일 수
+    var totalCurrency by remember { mutableStateOf(0) } // 계산된 총 재화량
 
     Column(
         modifier = Modifier.fillMaxSize().padding(16.dp),
         verticalArrangement = Arrangement.Center
     ) {
-        Text(text = "일일 퀘스트 계산기", fontSize = 24.sp, modifier = Modifier.padding(bottom = 16.dp))
+        Text(text = "획득 가능한 재화 계산기", fontSize = 24.sp, modifier = Modifier.padding(bottom = 16.dp))
 
-        // ✅ 재화 입력 필드 ✅
+        Text(text = "기본 하루 획득 가능 재화: $dailyCurrency 개", fontSize = 18.sp, modifier = Modifier.padding(bottom = 16.dp))
+
+        // ✅ 기간 입력 필드 ✅
         OutlinedTextField(
-            value = currencyInput,
-            onValueChange = { currencyInput = it },
-            label = { Text("오늘 획득한 재화 입력") },
+            value = daysInput,
+            onValueChange = { daysInput = it },
+            label = { Text("계산할 기간(일) 입력") },
             keyboardOptions = KeyboardOptions.Default.copy(keyboardType = KeyboardType.Number),
             modifier = Modifier.fillMaxWidth().padding(bottom = 8.dp)
         )
 
-        // ✅ 저장 버튼 ✅
+        // ✅ 계산 버튼 ✅
         Button(
             onClick = {
-                val amount = currencyInput.toIntOrNull()
-                if (amount != null && amount >= 0) {
-                    dbHelper.insertOrUpdateCurrency(amount)
-                    todayCurrency = dbHelper.getTodayCurrency()
-                    weeklyTotal = dbHelper.getTotalCurrency(7)
-                    monthlyTotal = dbHelper.getTotalCurrency(30)
-                    currencyInput = ""
-                    Toast.makeText(context, "저장되었습니다!", Toast.LENGTH_SHORT).show()
+                val days = daysInput.toIntOrNull()
+                if (days != null && days > 0) {
+                    totalCurrency = dailyCurrency * days
+                    Toast.makeText(context, "계산 완료!", Toast.LENGTH_SHORT).show()
                 } else {
-                    Toast.makeText(context, "올바른 값을 입력하세요.", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(context, "올바른 기간을 입력하세요.", Toast.LENGTH_SHORT).show()
                 }
             },
             modifier = Modifier.fillMaxWidth().padding(bottom = 16.dp)
         ) {
-            Text("저장")
+            Text("계산")
         }
 
-        // ✅ 데이터 표시 ✅
-        Text(text = "오늘 획득한 재화: $todayCurrency 개", fontSize = 18.sp, modifier = Modifier.padding(bottom = 8.dp))
-        Text(text = "최근 7일 총합: $weeklyTotal 개", fontSize = 18.sp, modifier = Modifier.padding(bottom = 8.dp))
-        Text(text = "최근 30일 총합: $monthlyTotal 개", fontSize = 18.sp)
+        // ✅ 결과 표시 ✅
+        if (totalCurrency > 0) {
+            Text(text = "총 획득 가능한 재화: $totalCurrency 개", fontSize = 20.sp)
+        }
     }
 }
