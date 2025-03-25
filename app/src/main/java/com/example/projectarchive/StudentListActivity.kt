@@ -3,6 +3,7 @@ package com.example.projectarchive
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -30,16 +31,17 @@ fun StudentListScreen() {
     val allStudents by remember { mutableStateOf(dbHelper.getAllStudents()) }
 
     var searchQuery by remember { mutableStateOf(TextFieldValue("")) }
+    var selectedStudent by remember { mutableStateOf<Pair<String, String>?>(null) } // 선택된 학생
 
-    // 검색어에 따라 필터링된 학생 목록
+    // 검색 필터 적용
     val filteredStudents = allStudents.filter {
-        it.first.contains(searchQuery.text, ignoreCase = true) // 이름 검색
+        it.first.contains(searchQuery.text, ignoreCase = true)
     }
 
     Column(modifier = Modifier.fillMaxSize().padding(16.dp)) {
         Text(text = "학생 명부", fontSize = 24.sp, modifier = Modifier.padding(bottom = 16.dp))
 
-        // 검색창 추가
+        // ✅ 검색창 ✅
         OutlinedTextField(
             value = searchQuery,
             onValueChange = { searchQuery = it },
@@ -47,26 +49,52 @@ fun StudentListScreen() {
             modifier = Modifier.fillMaxWidth().padding(bottom = 16.dp)
         )
 
-        // 검색 결과를 리스트로 표시
+        // ✅ 학생 목록 ✅
         LazyColumn {
             items(filteredStudents) { student ->
-                StudentItem(student.first, student.second)
+                StudentItem(student) { selectedStudent = student }
             }
+        }
+
+        // ✅ 학생 상세 정보 다이얼로그 ✅
+        if (selectedStudent != null) {
+            StudentDetailDialog(student = selectedStudent!!, onDismiss = { selectedStudent = null })
         }
     }
 }
 
 @Composable
-fun StudentItem(name: String, type: String) {
+fun StudentItem(student: Pair<String, String>, onClick: () -> Unit) {
     Card(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(8.dp),
+            .padding(8.dp)
+            .clickable { onClick() }, // 클릭 시 상세 정보 표시
         colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surfaceVariant)
     ) {
         Column(modifier = Modifier.padding(16.dp)) {
-            Text(text = "이름: $name", fontSize = 18.sp)
-            Text(text = "타입: $type", fontSize = 16.sp)
+            Text(text = "이름: ${student.first}", fontSize = 18.sp)
+            Text(text = "타입: ${student.second}", fontSize = 16.sp)
         }
     }
+}
+
+@Composable
+fun StudentDetailDialog(student: Pair<String, String>, onDismiss: () -> Unit) {
+    AlertDialog(
+        onDismissRequest = onDismiss,
+        title = { Text("학생 정보") },
+        text = {
+            Column {
+                Text("이름: ${student.first}", fontSize = 18.sp)
+                Text("타입: ${student.second}", fontSize = 18.sp)
+                // 필요하면 추가 정보 여기에 표시 가능
+            }
+        },
+        confirmButton = {
+            Button(onClick = onDismiss) {
+                Text("닫기")
+            }
+        }
+    )
 }
