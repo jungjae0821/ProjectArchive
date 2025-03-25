@@ -36,9 +36,9 @@ fun CalculatorScreen() {
         modifier = Modifier.fillMaxSize().padding(16.dp),
         verticalArrangement = Arrangement.Center
     ) {
-        Text(text = "획득 가능한 재화 계산기", fontSize = 24.sp, modifier = Modifier.padding(bottom = 16.dp))
+        Text(text = "청휘석 계산기", fontSize = 24.sp, modifier = Modifier.padding(bottom = 16.dp))
 
-        Text(text = "기본 하루 획득 가능 재화: $dailyCurrency 개", fontSize = 18.sp, modifier = Modifier.padding(bottom = 16.dp))
+        Text(text = "하루에 획득 가능한 청휘석: $dailyCurrency 개", fontSize = 18.sp, modifier = Modifier.padding(bottom = 16.dp))
 
         // ✅ 기간 입력 필드 ✅
         OutlinedTextField(
