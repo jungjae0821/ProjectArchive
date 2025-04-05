@@ -19,7 +19,7 @@ class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME
         db.execSQL(createStudentTable)
 
         // 데이터 추가 (각각 다른 이미지 경로를 설정)
-        db.execSQL("INSERT INTO $TABLE_STUDENTS (name, type, image_path) VALUES ('김철수', '폭발/경장갑', 'android.resource://com.example.projectarchive/drawable/student1')")
+        db.execSQL("INSERT INTO $TABLE_STUDENTS (name, type, image_path) VALUES ('김철수', '폭발/경장갑', 'android.resource://com.example.projectarchive/drawable/test1')")
         db.execSQL("INSERT INTO $TABLE_STUDENTS (name, type, image_path) VALUES ('이영희', '관통/특수장갑', 'android.resource://com.example.projectarchive/drawable/student2')")
         db.execSQL("INSERT INTO $TABLE_STUDENTS (name, type, image_path) VALUES ('박민수', '신비/중장갑', 'android.resource://com.example.projectarchive/drawable/student3')")
     }
