@@ -26,7 +26,7 @@ class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME
         db.execSQL("""
             INSERT INTO $TABLE_STUDENTS (name, type, image_path, skill1, skill2, skill3, skill4)
             VALUES (
-                '김철수', 
+                '사토노 다이아몬드', 
                 '폭발/경장갑', 
                 'android.resource://com.example.projectarchive/drawable/test1', 
                 '화염탄', '강화탄환', '폭발 범위 증가', '기절 유발'
@@ -36,7 +36,7 @@ class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME
         db.execSQL("""
             INSERT INTO $TABLE_STUDENTS (name, type, image_path, skill1, skill2, skill3, skill4)
             VALUES (
-                '이영희', 
+                '카렌짱', 
                 '관통/특수장갑', 
                 'android.resource://com.example.projectarchive/drawable/test2', 
                 '관통 사격', '빠른 재장전', '명중률 향상', '치명타 확률 증가'
@@ -46,7 +46,7 @@ class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME
         db.execSQL("""
             INSERT INTO $TABLE_STUDENTS (name, type, image_path, skill1, skill2, skill3, skill4)
             VALUES (
-                '박민수', 
+                '네오 유니버스', 
                 '신비/중장갑', 
                 'android.resource://com.example.projectarchive/drawable/test3', 
                 '에너지 볼트', '방어막 생성', '이동 속도 감소', '스턴 공격'

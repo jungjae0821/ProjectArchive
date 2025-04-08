@@ -105,10 +105,10 @@ fun StudentDetailDialog(student: Student, onDismiss: () -> Unit) {
                 Text("이름: ${student.name}", fontSize = 16.sp)
                 Text("타입: ${student.type}", fontSize = 16.sp)
                 Spacer(modifier = Modifier.height(8.dp))
-                Text("스킬 1: ${student.skill1}")
-                Text("스킬 2: ${student.skill2}")
-                Text("스킬 3: ${student.skill3}")
-                Text("스킬 4: ${student.skill4}")
+                Text("EX 스킬: ${student.skill1}")
+                Text("기본 스킬: ${student.skill2}")
+                Text("강화 스킬: ${student.skill3}")
+                Text("서브 스킬: ${student.skill4}")
             }
         },
         confirmButton = {

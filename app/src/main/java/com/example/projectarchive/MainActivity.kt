@@ -48,7 +48,7 @@ fun MainMenuScreen() {
             // 버튼 중앙에 배치
             MenuCard("학생 명부") { context.startActivity(Intent(context, StudentListActivity::class.java)) }
             MenuCard("계산기") { context.startActivity(Intent(context, CalculatorActivity::class.java)) }
-            MenuCard("정보 테이블") { context.startActivity(Intent(context, TableActivity::class.java)) }
+            MenuCard("유용한 정보 모음") { context.startActivity(Intent(context, TableActivity::class.java)) }
         }
     }
 }
