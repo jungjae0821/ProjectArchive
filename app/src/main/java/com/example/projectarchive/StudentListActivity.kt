@@ -85,7 +85,7 @@ fun StudentItem(student: Triple<String, String, String>, onClick: () -> Unit) {
                     .padding(bottom = 8.dp) // 이미지와 텍스트 사이에 여백 추가
             )
             // 학생 정보
-            Text(text = "이름: ${student.first}", fontSize = 18.sp)
+            Text(text = "이름: ${student.first}", fontSize = 16.sp)
             Text(text = "타입: ${student.second}", fontSize = 16.sp)
         }
     }
@@ -107,8 +107,8 @@ fun StudentDetailDialog(student: Triple<String, String, String>, onDismiss: () -
                         .padding(bottom = 16.dp) // 이미지와 텍스트 사이에 여백 추가
                 )
                 // 학생 정보
-                Text("이름: ${student.first}", fontSize = 18.sp)
-                Text("타입: ${student.second}", fontSize = 18.sp)
+                Text("이름: ${student.first}", fontSize = 16.sp)
+                Text("타입: ${student.second}", fontSize = 16.sp)
             }
         },
         confirmButton = {
