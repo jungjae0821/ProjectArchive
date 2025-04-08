@@ -38,7 +38,7 @@ class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME
             VALUES (
                 '이영희', 
                 '관통/특수장갑', 
-                'android.resource://com.example.projectarchive/drawable/student2', 
+                'android.resource://com.example.projectarchive/drawable/test2', 
                 '관통 사격', '빠른 재장전', '명중률 향상', '치명타 확률 증가'
             )
         """.trimIndent())
@@ -48,7 +48,7 @@ class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME
             VALUES (
                 '박민수', 
                 '신비/중장갑', 
-                'android.resource://com.example.projectarchive/drawable/student3', 
+                'android.resource://com.example.projectarchive/drawable/test3', 
                 '에너지 볼트', '방어막 생성', '이동 속도 감소', '스턴 공격'
             )
         """.trimIndent())
