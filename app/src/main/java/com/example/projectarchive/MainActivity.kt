@@ -70,7 +70,7 @@ fun MenuCard(title: String, onClick: () -> Unit) {
                 .padding(20.dp),
             contentAlignment = Alignment.Center
         ) {
-            Text(text = title, fontSize = 20.sp, fontWeight = FontWeight.Medium)
+            Text(text = title, fontSize = 20.sp, fontWeight = FontWeight.Bold)
         }
     }
 }
