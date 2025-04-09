@@ -25,9 +25,11 @@ class CurrencyDatabaseHelper(context: Context) :
         """.trimIndent()
         db.execSQL(createTableQuery)
 
-        // ✅ 기본 하루 획득 가능 재화 저장 ✅
-        val defaultAmount = 500 // 예시 값 (필요에 따라 조정)
-        val values = ContentValues().apply { put(COLUMN_AMOUNT, defaultAmount) }
+        // ✅ 기본 주간 획득 가능 재화 저장 ✅
+        val defaultWeeklyAmount = 3500 // 예: 하루 500 × 7일 = 3500
+        val values = ContentValues().apply {
+            put(COLUMN_AMOUNT, defaultWeeklyAmount)
+        }
         db.insert(TABLE_NAME, null, values)
     }
 
@@ -36,8 +38,8 @@ class CurrencyDatabaseHelper(context: Context) :
         onCreate(db)
     }
 
-    // ✅ 하루 기본 재화 가져오기 ✅
-    fun getDailyCurrency(): Int {
+    // ✅ 주간 획득 재화 가져오기 ✅
+    fun getWeeklyCurrency(): Int {
         val db = readableDatabase
         val cursor = db.rawQuery("SELECT $COLUMN_AMOUNT FROM $TABLE_NAME LIMIT 1", null)
         var amount = 0
