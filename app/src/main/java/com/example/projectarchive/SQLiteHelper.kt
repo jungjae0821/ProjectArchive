@@ -26,7 +26,7 @@ class CurrencyDatabaseHelper(context: Context) :
         db.execSQL(createTableQuery)
 
         // ✅ 기본 주간 획득 가능 재화 저장 ✅
-        val defaultWeeklyAmount = 3500 // 예: 하루 500 × 7일 = 3500
+        val defaultWeeklyAmount = 260 // 예: 하루 500 × 7일 = 3500
         val values = ContentValues().apply {
             put(COLUMN_AMOUNT, defaultWeeklyAmount)
         }
