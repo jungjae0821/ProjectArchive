@@ -25,8 +25,8 @@ class CurrencyDatabaseHelper(context: Context) :
         """.trimIndent()
         db.execSQL(createTableQuery)
 
-        // ✅ 기본 하루 획득 가능 재화 저장 ✅
-        val defaultAmount = 500 // 예시 값 (필요에 따라 조정)
+        // ✅ 기본적으로 하루에 획득 가능한 청휘석의 양을 저장 ✅
+        val defaultAmount = 20 // 획득 가능한 청휘석의 양
         val values = ContentValues().apply { put(COLUMN_AMOUNT, defaultAmount) }
         db.insert(TABLE_NAME, null, values)
     }
@@ -36,7 +36,7 @@ class CurrencyDatabaseHelper(context: Context) :
         onCreate(db)
     }
 
-    // ✅ 하루 기본 재화 가져오기 ✅
+    // ✅ 하루에 획득 가능한 청휘석의 양 가져오기 ✅
     fun getDailyCurrency(): Int {
         val db = readableDatabase
         val cursor = db.rawQuery("SELECT $COLUMN_AMOUNT FROM $TABLE_NAME LIMIT 1", null)

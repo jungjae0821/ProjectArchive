@@ -28,9 +28,9 @@ fun CalculatorScreen() {
     val context = LocalContext.current
     val dbHelper = remember { CurrencyDatabaseHelper(context) }
 
-    val dailyCurrency = dbHelper.getDailyCurrency() // ✅ 하루 획득 가능 재화 가져오기
+    val dailyCurrency = dbHelper.getDailyCurrency() // ✅ 하루에 획득 가능한 청휘석의 양 가져오기
     var daysInput by remember { mutableStateOf("") } // 사용자가 입력한 일 수
-    var totalCurrency by remember { mutableStateOf(0) } // 계산된 총 재화량
+    var totalCurrency by remember { mutableStateOf(0) } // 계산된 총 청휘석의 양
 
     Column(
         modifier = Modifier.fillMaxSize().padding(16.dp),
@@ -67,7 +67,7 @@ fun CalculatorScreen() {
 
         // ✅ 결과 표시 ✅
         if (totalCurrency > 0) {
-            Text(text = "총 획득 가능한 재화: $totalCurrency 개", fontSize = 20.sp)
+            Text(text = "총 획득 가능한 청휘석: $totalCurrency 개", fontSize = 20.sp)
         }
     }
 }
