@@ -42,7 +42,7 @@ fun TableScreen() {
         Text(text = "테이블 화면", fontSize = 24.sp)
         Spacer(modifier = Modifier.height(16.dp))
 
-        HelpLinksList() // 🔗 링크 리스트 호출
+        HelpLinksList() // 링크 리스트 호출
     }
 }
 
