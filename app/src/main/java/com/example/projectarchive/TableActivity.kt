@@ -55,11 +55,16 @@ fun HelpLinksList() {
         "미래시 가이드" to "https://gall.dcinside.com/m/projectmx/11714202"
     )
 
-    Column(modifier = Modifier.fillMaxWidth()) {
+    Column(
+        modifier = Modifier.fillMaxWidth(),
+        horizontalAlignment = Alignment.CenterHorizontally // ✅ 링크를 가운데 정렬
+    ) {
         Text(
             "원하는 정보를 누르면 해당 링크로 이동합니다.",
             fontSize = 20.sp,
-            modifier = Modifier.padding(bottom = 12.dp)
+            modifier = Modifier
+                .padding(bottom = 12.dp)
+                .align(Alignment.Start) // 안내 문구는 왼쪽 정렬로 유지
         )
 
         links.forEach { (title, url) ->
@@ -69,7 +74,7 @@ fun HelpLinksList() {
                     style = SpanStyle(
                         color = Color(0xFF1E88E5),
                         textDecoration = TextDecoration.Underline,
-                        fontSize = 20.sp // 하이퍼링크 글자 크기 키움
+                        fontSize = 20.sp
                     )
                 ) {
                     append("• $title")
@@ -91,3 +96,4 @@ fun HelpLinksList() {
         }
     }
 }
+
