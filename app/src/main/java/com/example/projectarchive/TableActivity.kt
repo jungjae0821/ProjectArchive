@@ -39,7 +39,7 @@ fun TableScreen() {
             .padding(16.dp),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Text(text = "테이블 화면", fontSize = 24.sp)
+        Text(text = "유용한 정보모음", fontSize = 24.sp)
         Spacer(modifier = Modifier.height(16.dp))
 
         HelpLinksList() // 링크 리스트 호출
@@ -51,16 +51,16 @@ fun HelpLinksList() {
     val context = LocalContext.current
 
     val links = listOf(
-        "청휘석 가이드" to "https://gamewiki.example.com/currency-guide",
-        "캐릭터 육성 팁" to "https://gamewiki.example.com/character-growth",
-        "장비 파밍 루트" to "https://gamewiki.example.com/equipment-farm",
-        "이벤트 일정" to "https://gamewiki.example.com/event-calendar"
+        "뉴비 가이드" to "https://gall.dcinside.com/m/projectmx/10386680",
+        "학생 생일표" to "https://arona.ai/table/birthday",
+        "인게임 BGM 들으러 가기" to "https://arona.ai/jukebox",
+        "미래시 가이드" to "https://gall.dcinside.com/m/projectmx/11714202"
     )
 
     Column(
         modifier = Modifier.fillMaxWidth()
     ) {
-        Text("도움이 되는 링크 모음:", fontSize = 18.sp, modifier = Modifier.padding(bottom = 8.dp))
+        Text("유용한 정보 모음:", fontSize = 18.sp, modifier = Modifier.padding(bottom = 8.dp))
 
         links.forEach { (title, url) ->
             val annotatedString = buildAnnotatedString {
