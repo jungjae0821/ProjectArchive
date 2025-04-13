@@ -11,10 +11,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
-import androidx.compose.ui.text.input.OffsetMapping
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -39,8 +37,8 @@ fun TableScreen() {
             .padding(16.dp),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Text(text = "유용한 정보모음", fontSize = 24.sp)
-        Spacer(modifier = Modifier.height(16.dp))
+        Text(text = "유용한 정보모음", fontSize = 28.sp) // 타이틀 크게
+        Spacer(modifier = Modifier.height(20.dp))
 
         HelpLinksList() // 링크 리스트 호출
     }
@@ -57,10 +55,12 @@ fun HelpLinksList() {
         "미래시 가이드" to "https://gall.dcinside.com/m/projectmx/11714202"
     )
 
-    Column(
-        modifier = Modifier.fillMaxWidth()
-    ) {
-        Text("유용한 정보 모음:", fontSize = 18.sp, modifier = Modifier.padding(bottom = 8.dp))
+    Column(modifier = Modifier.fillMaxWidth()) {
+        Text(
+            "원하는 정보를 누르면 해당 링크로 이동합니다.",
+            fontSize = 20.sp,
+            modifier = Modifier.padding(bottom = 12.dp)
+        )
 
         links.forEach { (title, url) ->
             val annotatedString = buildAnnotatedString {
@@ -68,7 +68,8 @@ fun HelpLinksList() {
                 withStyle(
                     style = SpanStyle(
                         color = Color(0xFF1E88E5),
-                        textDecoration = TextDecoration.Underline
+                        textDecoration = TextDecoration.Underline,
+                        fontSize = 20.sp // 하이퍼링크 글자 크기 키움
                     )
                 ) {
                     append("• $title")
@@ -85,7 +86,7 @@ fun HelpLinksList() {
                             context.startActivity(intent)
                         }
                 },
-                modifier = Modifier.padding(vertical = 4.dp)
+                modifier = Modifier.padding(vertical = 8.dp)
             )
         }
     }
