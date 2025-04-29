@@ -13,12 +13,15 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.Shadow
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.compose.ui.geometry.Offset // ✅ 이걸 추가해야 Offset 오류 없음
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -50,19 +53,25 @@ fun MainMenuScreen() {
                 .padding(16.dp),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            // ✅ 제목을 화면 위쪽에 더 가깝게 배치
-            Spacer(modifier = Modifier.height(100.dp)) // 여기로 조절해서 제목을 위로 끌어올림
+            // ✅ 제목을 약간 위로 끌어올림
+            Spacer(modifier = Modifier.height(100.dp))
 
             Text(
                 text = "Project Archive",
                 fontSize = 35.sp,
                 fontWeight = FontWeight.Bold,
                 color = Color.Black,
-                modifier = Modifier.padding(bottom = 80.dp) // 제목과 버튼 사이 충분히 띄움
+                style = TextStyle(
+                    shadow = Shadow(
+                        color = Color.Gray,
+                        offset = Offset(4f, 4f),
+                        blurRadius = 8f
+                    )
+                ),
+                modifier = Modifier.padding(bottom = 80.dp)
             )
 
-            // ✅ 버튼들은 중앙 가까이에 그대로 유지
-            Spacer(modifier = Modifier.weight(1f)) // 남은 공간 채우기
+            Spacer(modifier = Modifier.weight(1f))
 
             MenuCard("학생 명부") {
                 context.startActivity(Intent(context, StudentListActivity::class.java))
@@ -74,7 +83,7 @@ fun MainMenuScreen() {
                 context.startActivity(Intent(context, TableActivity::class.java))
             }
 
-            Spacer(modifier = Modifier.weight(2f)) // 버튼 아래 공간 더 많이
+            Spacer(modifier = Modifier.weight(2f))
         }
     }
 }
@@ -87,7 +96,8 @@ fun MenuCard(title: String, onClick: () -> Unit) {
             .padding(8.dp)
             .clickable { onClick() },
         shape = RoundedCornerShape(12.dp),
-        colors = CardDefaults.cardColors(containerColor = Color(0xCCFFFFFF)) // 반투명 흰색
+        colors = CardDefaults.cardColors(containerColor = Color(0xCCFFFFFF)),
+        elevation = CardDefaults.cardElevation(defaultElevation = 8.dp) // ✅ 카드 자체 그림자 추가
     ) {
         Box(
             modifier = Modifier
@@ -99,7 +109,14 @@ fun MenuCard(title: String, onClick: () -> Unit) {
                 text = title,
                 fontSize = 20.sp,
                 fontWeight = FontWeight.Bold,
-                color = Color.Black
+                color = Color.Black,
+                style = TextStyle(
+                    shadow = Shadow(
+                        color = Color.Gray,
+                        offset = Offset(2f, 2f),
+                        blurRadius = 4f
+                    )
+                )
             )
         }
     }
