@@ -54,9 +54,9 @@ fun MainMenuScreen() {
         ) {
             Text(
                 text = "Project Archive",
-                fontSize = 28.sp,
+                fontSize = 35.sp,
                 fontWeight = FontWeight.Bold,
-                color = Color.White, // 배경 대비 강조
+                color = Color.Black, // 배경 대비 강조
                 modifier = Modifier.padding(bottom = 24.dp)
             )
 
