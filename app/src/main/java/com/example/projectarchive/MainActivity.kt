@@ -38,44 +38,37 @@ fun MainMenuScreen() {
     ) {
         // ✅ 배경 이미지
         Image(
-            painter = painterResource(id = R.drawable.background), // 배경 이미지 리소스
+            painter = painterResource(id = R.drawable.background),
             contentDescription = null,
             contentScale = ContentScale.Crop,
             modifier = Modifier.fillMaxSize()
         )
 
+        // ✅ 제목과 버튼을 중앙 정렬
         Column(
             modifier = Modifier
                 .fillMaxSize()
                 .padding(16.dp),
             horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.Top
+            verticalArrangement = Arrangement.Center
         ) {
-            Spacer(modifier = Modifier.height(100.dp)) // 제목을 화면 1/3 위치 정도로 내림
-
             Text(
                 text = "Project Archive",
                 fontSize = 35.sp,
                 fontWeight = FontWeight.Bold,
                 color = Color.Black,
-                modifier = Modifier.padding(bottom = 32.dp)
+                modifier = Modifier.padding(bottom = 24.dp)
             )
 
-            Spacer(modifier = Modifier.height(40.dp)) // 제목과 버튼 사이 간격
-
-            Column(
-                horizontalAlignment = Alignment.CenterHorizontally,
-                modifier = Modifier.fillMaxWidth()
-            ) {
-                MenuCard("학생 명부") {
-                    context.startActivity(Intent(context, StudentListActivity::class.java))
-                }
-                MenuCard("계산기") {
-                    context.startActivity(Intent(context, CalculatorActivity::class.java))
-                }
-                MenuCard("유용한 정보") {
-                    context.startActivity(Intent(context, TableActivity::class.java))
-                }
+            // ✅ 버튼들
+            MenuCard("학생 명부") {
+                context.startActivity(Intent(context, StudentListActivity::class.java))
+            }
+            MenuCard("계산기") {
+                context.startActivity(Intent(context, CalculatorActivity::class.java))
+            }
+            MenuCard("유용한 정보") {
+                context.startActivity(Intent(context, TableActivity::class.java))
             }
         }
     }
@@ -89,7 +82,7 @@ fun MenuCard(title: String, onClick: () -> Unit) {
             .padding(8.dp)
             .clickable { onClick() },
         shape = RoundedCornerShape(12.dp),
-        colors = CardDefaults.cardColors(containerColor = Color(0xCCFFFFFF)) // 반투명 흰색
+        colors = CardDefaults.cardColors(containerColor = Color(0xCCFFFFFF))
     ) {
         Box(
             modifier = Modifier
