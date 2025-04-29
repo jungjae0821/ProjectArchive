@@ -9,7 +9,7 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.*
-import androidx.compose.runtime.*
+import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -38,36 +38,44 @@ fun MainMenuScreen() {
     ) {
         // ✅ 배경 이미지
         Image(
-            painter = painterResource(id = R.drawable.background), // 이미지 파일명
+            painter = painterResource(id = R.drawable.background), // 배경 이미지 리소스
             contentDescription = null,
             contentScale = ContentScale.Crop,
             modifier = Modifier.fillMaxSize()
         )
 
-        // ✅ 메뉴 및 텍스트를 오버레이로 표시
         Column(
             modifier = Modifier
                 .fillMaxSize()
                 .padding(16.dp),
             horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.Center
+            verticalArrangement = Arrangement.Top
         ) {
+            Spacer(modifier = Modifier.height(100.dp)) // 제목을 화면 1/3 위치 정도로 내림
+
             Text(
                 text = "Project Archive",
                 fontSize = 35.sp,
                 fontWeight = FontWeight.Bold,
-                color = Color.Black, // 배경 대비 강조
-                modifier = Modifier.padding(bottom = 24.dp)
+                color = Color.Black,
+                modifier = Modifier.padding(bottom = 32.dp)
             )
 
-            MenuCard("학생 명부") {
-                context.startActivity(Intent(context, StudentListActivity::class.java))
-            }
-            MenuCard("계산기") {
-                context.startActivity(Intent(context, CalculatorActivity::class.java))
-            }
-            MenuCard("유용한 정보") {
-                context.startActivity(Intent(context, TableActivity::class.java))
+            Spacer(modifier = Modifier.height(40.dp)) // 제목과 버튼 사이 간격
+
+            Column(
+                horizontalAlignment = Alignment.CenterHorizontally,
+                modifier = Modifier.fillMaxWidth()
+            ) {
+                MenuCard("학생 명부") {
+                    context.startActivity(Intent(context, StudentListActivity::class.java))
+                }
+                MenuCard("계산기") {
+                    context.startActivity(Intent(context, CalculatorActivity::class.java))
+                }
+                MenuCard("유용한 정보") {
+                    context.startActivity(Intent(context, TableActivity::class.java))
+                }
             }
         }
     }
@@ -81,7 +89,7 @@ fun MenuCard(title: String, onClick: () -> Unit) {
             .padding(8.dp)
             .clickable { onClick() },
         shape = RoundedCornerShape(12.dp),
-        colors = CardDefaults.cardColors(containerColor = Color(0xCCFFFFFF)) // 반투명 흰색 배경
+        colors = CardDefaults.cardColors(containerColor = Color(0xCCFFFFFF)) // 반투명 흰색
     ) {
         Box(
             modifier = Modifier
