@@ -44,23 +44,26 @@ fun MainMenuScreen() {
             modifier = Modifier.fillMaxSize()
         )
 
-        // ✅ 제목과 버튼을 중앙 정렬
         Column(
             modifier = Modifier
                 .fillMaxSize()
                 .padding(16.dp),
-            horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.Center
+            horizontalAlignment = Alignment.CenterHorizontally
         ) {
+            // ✅ 제목을 화면 위쪽에 더 가깝게 배치
+            Spacer(modifier = Modifier.height(100.dp)) // 여기로 조절해서 제목을 위로 끌어올림
+
             Text(
                 text = "Project Archive",
                 fontSize = 35.sp,
                 fontWeight = FontWeight.Bold,
                 color = Color.Black,
-                modifier = Modifier.padding(bottom = 24.dp)
+                modifier = Modifier.padding(bottom = 80.dp) // 제목과 버튼 사이 충분히 띄움
             )
 
-            // ✅ 버튼들
+            // ✅ 버튼들은 중앙 가까이에 그대로 유지
+            Spacer(modifier = Modifier.weight(1f)) // 남은 공간 채우기
+
             MenuCard("학생 명부") {
                 context.startActivity(Intent(context, StudentListActivity::class.java))
             }
@@ -70,6 +73,8 @@ fun MainMenuScreen() {
             MenuCard("유용한 정보") {
                 context.startActivity(Intent(context, TableActivity::class.java))
             }
+
+            Spacer(modifier = Modifier.weight(2f)) // 버튼 아래 공간 더 많이
         }
     }
 }
@@ -82,7 +87,7 @@ fun MenuCard(title: String, onClick: () -> Unit) {
             .padding(8.dp)
             .clickable { onClick() },
         shape = RoundedCornerShape(12.dp),
-        colors = CardDefaults.cardColors(containerColor = Color(0xCCFFFFFF))
+        colors = CardDefaults.cardColors(containerColor = Color(0xCCFFFFFF)) // 반투명 흰색
     ) {
         Box(
             modifier = Modifier
