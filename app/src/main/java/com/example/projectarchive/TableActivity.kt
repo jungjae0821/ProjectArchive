@@ -52,7 +52,8 @@ fun HelpLinksList() {
         "뉴비 가이드" to "https://gall.dcinside.com/m/projectmx/10386680",
         "학생 생일표" to "https://arona.ai/table/birthday",
         "인게임 BGM 들으러 가기" to "https://arona.ai/jukebox",
-        "미래시 가이드" to "https://gall.dcinside.com/m/projectmx/11714202"
+        "미래시 가이드" to "https://gall.dcinside.com/m/projectmx/11714202",
+        "학생스탯 조회" to "https://arona.ai/students"
     )
 
     Column(
