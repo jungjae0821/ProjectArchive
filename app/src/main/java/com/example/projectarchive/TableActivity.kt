@@ -37,7 +37,7 @@ fun TableScreen() {
             .padding(16.dp),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Text(text = "유용한 정보모음", fontSize = 28.sp) // 타이틀 크게
+        Text(text = "유용한 정보모음", fontSize = 28.sp, color = Color.Black) // 타이틀 크게
         Spacer(modifier = Modifier.height(20.dp))
 
         HelpLinksList() // 링크 리스트 호출
