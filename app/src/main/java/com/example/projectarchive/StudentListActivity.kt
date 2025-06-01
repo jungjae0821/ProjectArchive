@@ -83,7 +83,7 @@ fun StudentItem(student: Student, onClick: () -> Unit) {
     ) {
         Column(modifier = Modifier.padding(16.dp)) {
             Text("이름: ${student.name}", fontSize = 16.sp)
-            Text("타입: ${student.type}", fontSize = 16.sp)
+            Text("공격/방어타입: ${student.type}", fontSize = 16.sp)
         }
     }
 }
