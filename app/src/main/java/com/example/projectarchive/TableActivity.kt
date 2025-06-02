@@ -6,19 +6,19 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.text.ClickableText
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.style.TextDecoration
+import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.compose.ui.graphics.Color
-import androidx.compose.foundation.text.ClickableText
-import androidx.compose.ui.text.withStyle
 
 class TableActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -35,12 +35,18 @@ fun TableScreen() {
         modifier = Modifier
             .fillMaxSize()
             .padding(16.dp),
-        horizontalAlignment = Alignment.CenterHorizontally
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.Center // 전체 중앙 정렬
     ) {
-        Text(text = "유용한 정보모음", fontSize = 28.sp, color = Color.Black) // 타이틀 크게
-        Spacer(modifier = Modifier.height(20.dp))
+        // 타이틀
+        Text(
+            text = "유용한 정보모음",
+            fontSize = 28.sp,
+            color = Color.Black,
+            modifier = Modifier.padding(bottom = 24.dp)
+        )
 
-        HelpLinksList() // 링크 리스트 호출
+        HelpLinksList()
     }
 }
 
@@ -58,15 +64,13 @@ fun HelpLinksList() {
     )
 
     Column(
-        modifier = Modifier.fillMaxWidth(),
-        horizontalAlignment = Alignment.CenterHorizontally // ✅ 링크를 가운데 정렬
+        horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Text(
             "원하는 정보를 누르면 해당 링크로 이동합니다.",
             fontSize = 20.sp,
-            modifier = Modifier
-                .padding(bottom = 12.dp)
-                .align(Alignment.Start) // 안내 문구는 왼쪽 정렬로 유지
+            color = Color.Black,
+            modifier = Modifier.padding(bottom = 20.dp)
         )
 
         links.forEach { (title, url) ->
@@ -98,4 +102,3 @@ fun HelpLinksList() {
         }
     }
 }
-
