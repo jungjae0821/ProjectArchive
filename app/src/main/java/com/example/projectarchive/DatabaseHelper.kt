@@ -318,7 +318,7 @@ class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME
             INSERT INTO $TABLE_STUDENTS (name, type, image_path, skill1, skill2, skill3, skill4)
             VALUES (
                 '히후미', 
-                '관통/', 
+                '관통/경장갑', 
                 'android.resource://com.example.projectarchive/drawable/test30', 
                 '도와줘요, 페로로 님!', '페로로 님의 응원', '수집가의 근성', '민첩한 수집가'
             )
